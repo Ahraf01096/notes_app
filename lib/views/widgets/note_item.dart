@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'edit_note_view.dart';
 
 class NoteItem extends StatelessWidget {
-   NoteItem({required this.color,super.key});
+   const NoteItem({required this.color,super.key});
  final Color color ;
   @override
   Widget build(BuildContext context) {
