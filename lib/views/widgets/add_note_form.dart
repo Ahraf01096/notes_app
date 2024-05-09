@@ -1,5 +1,7 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/cubits/add_note_cubit/add_note_cubit.dart';
+import 'package:notes_app/models/note_model.dart';
 
 import 'custom_button.dart';
 import 'custom_text_field.dart';
@@ -15,7 +17,7 @@ class AddNoteForm extends StatefulWidget {
 
 final GlobalKey<FormState> formKey = GlobalKey();
 AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-String? title,subTitle;
+String? title, subTitle;
 
 class _AddNoteFormState extends State<AddNoteForm> {
   @override
@@ -30,7 +32,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
           ),
           CustomTextField(
             hint: 'Title',
-            onSaved: (value){
+            onSaved: (value) {
               title = value;
             },
           ),
@@ -40,7 +42,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
           CustomTextField(
             hint: 'Content',
             maxLines: 5,
-            onSaved: (value){
+            onSaved: (value) {
               subTitle = value;
             },
           ),
@@ -48,16 +50,21 @@ class _AddNoteFormState extends State<AddNoteForm> {
             height: 40,
           ),
           CustomButton(
-            onTap: (){
-              if(formKey.currentState!.validate()){
+            onTap: () {
+              if (formKey.currentState!.validate()) {
                 formKey.currentState!.save();
-              }else{
-                autovalidateMode = AutovalidateMode.always;
-                setState(() {
 
-                });
+                var noteModel = NoteModel(
+                    color: Colors.blue.value,
+                    title: title!,
+                    subTitle: subTitle!,
+                    date: DateTime.now().toString());
+                BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
+              } else {
+                autovalidateMode = AutovalidateMode.always;
+                setState(() {});
               }
-            } ,
+            },
           ),
           const SizedBox(
             height: 16,
@@ -67,4 +74,3 @@ class _AddNoteFormState extends State<AddNoteForm> {
     );
   }
 }
-
