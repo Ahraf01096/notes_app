@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'edit_note_view.dart';
 
 class NoteItem extends StatelessWidget {
-   const NoteItem({required this.color,super.key});
- final Color color ;
+   const NoteItem({super.key});
+ // final Color color ;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -16,7 +16,7 @@ class NoteItem extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16), color: color),
+            borderRadius: BorderRadius.circular(16), color: Colors.lightBlueAccent),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
