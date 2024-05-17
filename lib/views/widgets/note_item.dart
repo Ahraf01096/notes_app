@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/models/note_model.dart';
 
 import 'edit_note_view.dart';
 
 class NoteItem extends StatelessWidget {
-   const NoteItem({super.key});
- // final Color color ;
+  const NoteItem({super.key, required this.note});
+  // final Color color ;
+  final NoteModel note;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
           return const EditNoteView();
         }));
@@ -16,22 +18,23 @@ class NoteItem extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16), color: Colors.lightBlueAccent),
+            borderRadius: BorderRadius.circular(16),
+            color: Color(note.color)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             ListTile(
               contentPadding: const EdgeInsets.all(0),
-              title: const Text(
-                'Flutter Tips',
+              title: Text(
+                note.title,
                 style: TextStyle(color: Colors.black, fontSize: 26),
               ),
               subtitle: Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: Text(
-                  'Build your carer with ahmed ashraf',
-                  style:
-                      TextStyle(color: Colors.black.withOpacity(.5), fontSize: 16),
+                  note.subTitle,
+                  style: TextStyle(
+                      color: Colors.black.withOpacity(.5), fontSize: 16),
                 ),
               ),
               trailing: IconButton(
@@ -43,9 +46,11 @@ class NoteItem extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 16,),
+            const SizedBox(
+              height: 16,
+            ),
             Text(
-              'Apr 26/2024',
+              note.date,
               style: TextStyle(color: Colors.black.withOpacity(.5)),
             )
           ],
