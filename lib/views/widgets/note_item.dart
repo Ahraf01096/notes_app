@@ -14,14 +14,15 @@ class NoteItem extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return  EditNoteView(note: note,);
+          return EditNoteView(
+            note: note,
+          );
         }));
       },
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            color: Color(note.color)),
+            borderRadius: BorderRadius.circular(16), color: Color(note.color)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
@@ -54,9 +55,17 @@ class NoteItem extends StatelessWidget {
             const SizedBox(
               height: 16,
             ),
-            Text(
-              note.date,
-              style: TextStyle(color: Colors.black.withOpacity(.5)),
+            Column(
+              children: [
+                Text(
+                  note.date,
+                  style: TextStyle(color: Colors.black.withOpacity(.5)),
+                ),
+                Text(
+                "nknk",
+                  style: TextStyle(color: Colors.black.withOpacity(.5)),
+                ),
+              ],
             )
           ],
         ),
