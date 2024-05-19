@@ -55,17 +55,9 @@ class NoteItem extends StatelessWidget {
             const SizedBox(
               height: 16,
             ),
-            Column(
-              children: [
-                Text(
-                  note.date,
-                  style: TextStyle(color: Colors.black.withOpacity(.5)),
-                ),
-                Text(
-                "nknk",
-                  style: TextStyle(color: Colors.black.withOpacity(.5)),
-                ),
-              ],
+            Text(
+              note.date,
+              style: TextStyle(color: Colors.black.withOpacity(.5)),
             )
           ],
         ),
