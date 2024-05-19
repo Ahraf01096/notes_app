@@ -38,7 +38,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
             },
           ),
           const SizedBox(
-            height: 30,
+            height: 16,
           ),
           CustomTextField(
             hint: 'Content',
