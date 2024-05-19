@@ -21,7 +21,7 @@ class NotesView extends StatelessWidget {
                 return const AddNoteBottomSheet();
               });
         },
-
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         backgroundColor: const Color(0xff76D6EE),
         child: const Icon(
           Icons.add,

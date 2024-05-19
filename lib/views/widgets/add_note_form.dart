@@ -4,6 +4,7 @@ import 'package:notes_app/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
 import 'package:intl/intl.dart';
 import 'package:notes_app/views/widgets/colors_list_view.dart';
+import '../../helper/show_snack_bar.dart';
 import 'custom_button.dart';
 import 'custom_text_field.dart';
 
@@ -62,6 +63,12 @@ class _AddNoteFormState extends State<AddNoteForm> {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
 
+                    showSnackBar(
+                      context,
+                      'Success',
+                      Colors.green,
+                    );
+
                     var currentDate = DateTime.now();
                     var formattedCurrentDate =
                         DateFormat('dd/MM/yyyy').format(currentDate);
@@ -76,6 +83,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                   } else {
                     autovalidateMode = AutovalidateMode.always;
                     setState(() {});
+
                   }
                 },
               );
