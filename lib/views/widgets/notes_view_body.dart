@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notes_app/views/widgets/notes_list_view.dart';
+import 'package:notes_app/views/widgets/search_note_view.dart';
 import 'custom_app_bar.dart';
 
 class NotesViewBody extends StatefulWidget {
@@ -20,7 +21,7 @@ class _NotesViewBodyState extends State<NotesViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
+    return  Padding(
       padding: EdgeInsets.symmetric(horizontal: 24),
       child: Column(
         children: [
@@ -30,6 +31,9 @@ class _NotesViewBodyState extends State<NotesViewBody> {
           CustomAppBar(
             title: 'Notes',
             icon: CupertinoIcons.search,
+            onPressed: (){
+              Navigator.push(context, PageRouteBuilder(pageBuilder: (context, animation, secondaryAnimation) => SearchNotes(),));
+            },
           ),
           Expanded(child: NotesListView()),
         ],
