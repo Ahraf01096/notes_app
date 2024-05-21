@@ -21,8 +21,7 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
+    return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
           children: [
@@ -60,13 +59,14 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
                     'The note content only has been edited',
                     Colors.green,
                   );
-                } else {
-                  showSnackBar(
-                    context,
-                    'The note has not been edited',
-                    Colors.red,
-                  );
-                }
+                 }
+                // else {
+                //   showSnackBar(
+                //     context,
+                //     'The note has not been edited',
+                //     Colors.red,
+                //   );
+                // }
               },
               title: 'Edit Notes',
               icon: Icons.check,
@@ -100,7 +100,6 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
             ),
           ],
         ),
-      ),
     );
   }
 }

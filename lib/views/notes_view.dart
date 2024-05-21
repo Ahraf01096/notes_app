@@ -25,6 +25,7 @@ class NotesView extends StatelessWidget {
         backgroundColor: const Color(0xff76D6EE),
         child: const Icon(
           Icons.add,
+          size: 35,
           color: Colors.black,
         ),
       ),
