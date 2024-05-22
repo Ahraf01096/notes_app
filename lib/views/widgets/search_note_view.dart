@@ -16,7 +16,6 @@ class SearchNotes extends StatefulWidget {
 
 class SearchNotesState extends State<SearchNotes> {
   String searchText = '';
-
   searchBar(BuildContext context) {
     return BlocBuilder<NotesCubit, NotesState>(
       builder: (context, state) {
