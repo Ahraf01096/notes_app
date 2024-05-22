@@ -22,20 +22,20 @@ class _NotesViewBodyState extends State<NotesViewBody> {
   @override
   Widget build(BuildContext context) {
     return  Padding(
-      padding: EdgeInsets.symmetric(horizontal: 24),
+      padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 50,
           ),
           CustomAppBar(
             title: 'Notes',
             icon: CupertinoIcons.search,
             onPressed: (){
-              Navigator.push(context, PageRouteBuilder(pageBuilder: (context, animation, secondaryAnimation) => SearchNotes(),));
+              Navigator.push(context, PageRouteBuilder(pageBuilder: (context, animation, secondaryAnimation) => const SearchNotes(),));
             },
           ),
-          Expanded(child: NotesListView()),
+          const Expanded(child: NotesListView()),
         ],
       ),
     );

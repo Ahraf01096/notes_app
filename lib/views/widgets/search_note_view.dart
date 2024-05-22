@@ -1,35 +1,37 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/views/widgets/custom_app_bar.dart';
 import 'package:notes_app/views/widgets/custom_text_field.dart';
-
 import '../../cubits/notes_cubit/notes_cubit.dart';
 import '../../models/note_model.dart';
 import 'note_item.dart';
 
 class SearchNotes extends StatefulWidget {
+  const SearchNotes({super.key});
+
   @override
-  _SearchNotesState createState() => _SearchNotesState();
+  SearchNotesState createState() => SearchNotesState();
 }
 
-class _SearchNotesState extends State<SearchNotes> {
-  String _searchText = '';
+class SearchNotesState extends State<SearchNotes> {
+  String searchText = '';
 
-  Search(BuildContext context) {
+  searchBar(BuildContext context) {
     return BlocBuilder<NotesCubit, NotesState>(
       builder: (context, state) {
         List<NoteModel> notes = BlocProvider.of<NotesCubit>(context)
             .notes!
             .where((note) =>
-                note.title.toLowerCase().contains(_searchText.toLowerCase()) ||
-                note.subTitle.toLowerCase().contains(_searchText.toLowerCase()))
+                note.title.toLowerCase().contains(searchText.toLowerCase()) ||
+                note.subTitle.toLowerCase().contains(searchText.toLowerCase()))
             .toList();
         return ListView.builder(
           itemCount: notes.length,
           itemBuilder: (BuildContext context, int index) {
             NoteModel note = notes[index];
             return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
+              padding: const EdgeInsets.only(bottom: 16),
               child: NoteItem(note: note),
             );
           },
@@ -41,11 +43,19 @@ class _SearchNotesState extends State<SearchNotes> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
+        padding: const EdgeInsets.only(left: 24, right: 24, top: 50),
         child: Column(
           children: [
+            CustomAppBar(
+                title: "Search Notes",
+                icon: CupertinoIcons.back,
+                onPressed: () {
+                  Navigator.pop(context);
+                }),
+            const SizedBox(
+              height: 30,
+            ),
             Container(
                 width: 340,
                 height: 60,
@@ -57,15 +67,12 @@ class _SearchNotesState extends State<SearchNotes> {
                   hint: "Search..",
                   onChanged: (value) {
                     setState(() {
-                      _searchText = value;
+                      searchText = value;
                     });
                   },
                 )),
-            const SizedBox(
-              height: 18,
-            ),
             Expanded(
-              child: Search(context),
+              child: searchBar(context),
             ),
           ],
         ),

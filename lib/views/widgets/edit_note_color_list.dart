@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:notes_app/views/widgets/colors_list_view.dart';
 
 import '../../constants.dart';
+import '../../helper/show_snack_bar.dart';
 import '../../models/note_model.dart';
 
 class EditNoteColorList extends StatefulWidget {
@@ -35,6 +36,11 @@ class _EditNoteColorListState extends State<EditNoteColorList> {
               currentIndex = index;
               widget.note.color = Kcolors[index].value;
               setState(() {});
+              showSnackBar(
+                context,
+                'The note color has been edited',
+                Colors.green,
+              );
             },
             child: ColorItem(
               color: Kcolors[index],

@@ -1,15 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
 
-import '../../helper/show_snack_bar.dart';
+import 'custom_button.dart';
 import 'edit_note_view.dart';
 
 class NoteItem extends StatelessWidget {
   const NoteItem({super.key, required this.note});
-  // final Color color ;
   final NoteModel note;
   @override
   Widget build(BuildContext context) {
@@ -44,9 +41,9 @@ class NoteItem extends StatelessWidget {
               ),
               trailing: IconButton(
                 onPressed: () {
-                  showDialog(context: context, builder: (context) =>
-                      AlertDialog(note: note)
-                  );
+                  showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(note: note));
                 },
                 icon: const Icon(
                   Icons.delete,
@@ -80,47 +77,8 @@ class AlertDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoAlertDialog(
-                        title: const Text('Do you want delete it ?'),
-                        actions: [
-    DeleteButton(note: note),
-    const CancelButton()
-                        ],
-                      );
-  }
-}
-
-class CancelButton extends StatelessWidget {
-  const CancelButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(onPressed: (){
-      Navigator.pop(context);
-    }, child: const Text('No',style: TextStyle(color: Color(0xff76D6EE)),));
-  }
-}
-
-class DeleteButton extends StatelessWidget {
-  const DeleteButton({
-    super.key,
-    required this.note,
-  });
-
-  final NoteModel note;
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(onPressed: (){
-      note.delete();
-      BlocProvider.of<NotesCubit>(context).fetchAllNotes();
-      Navigator.pop(context);
-      showSnackBar(
-        context,
-        'Deleted',
-        Colors.red,
-      );
-    }, child: const Text('Yes',style: TextStyle(color: Color(0xff76D6EE)),));
+      title: const Text('Do you want delete it ?'),
+      actions: [DeleteButton(note: note), const CancelButton()],
+    );
   }
 }
